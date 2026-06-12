@@ -17,7 +17,7 @@ def get_git_commit_number():
 def make_cuda_ext(name, module, sources):
     cuda_ext = CUDAExtension(
         name='%s.%s' % (module, name),
-        sources=[os.path.join(*module.split('.'), src) for src in sources]
+        sources=[os.path.join('src', *module.split('.'), s) for s in sources]
     )
     return cuda_ext
 
@@ -29,29 +29,15 @@ def write_version_to_file(version, target_file):
 
 if __name__ == '__main__':
     version = '0.6.0+%s' % get_git_commit_number()
-    write_version_to_file(version, 'pcdet/version.py')
+    write_version_to_file(version, 'src/pcdet/version.py')
 
     setup(
         name='pcdet',
         version=version,
-        description='OpenPCDet is a general codebase for 3D object detection from point cloud',
-        install_requires=[
-            'numpy',
-            'llvmlite',
-            'numba',
-            'tensorboardX',
-            'easydict',
-            'pyyaml',
-            'scikit-image',
-            'tqdm',
-            'SharedArray',
-            # 'spconv',  # spconv has different names depending on the cuda version
-        ],
-
-        author='Shaoshuai Shi',
-        author_email='shaoshuaics@gmail.com',
-        license='Apache License 2.0',
-        packages=find_packages(exclude=['tools', 'data', 'output']),
+        # 依賴管理已交給 pixi（pixi.toml）；此檔只負責產生 version.py、
+        # 安裝 pcdet 套件、編譯 CUDA 擴充。故不再列 install_requires 與 metadata。
+        packages=find_packages(where='src'),
+        package_dir={'': 'src'},
         cmdclass={
             'build_ext': BuildExtension,
         },

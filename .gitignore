@@ -15,3 +15,6 @@ venv/
 *.bin
 output
 version.py
+# pixi environments
+.pixi/*
+!.pixi/config.toml
