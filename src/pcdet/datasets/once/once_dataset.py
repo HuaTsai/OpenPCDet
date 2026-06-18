@@ -427,7 +427,7 @@ if __name__ == '__main__':
         dataset_cfg = EasyDict(yaml.load(open(args.cfg_file)))
 
 
-        ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
+        ROOT_DIR = (Path(__file__).resolve().parent / '../../../../').resolve()
         once_data_path = ROOT_DIR / 'data' / 'once'
         once_save_path = ROOT_DIR / 'data' / 'once'
 

@@ -282,7 +282,7 @@ if __name__ == '__main__':
         except:
             yaml_config = yaml.safe_load(open(args.cfg_file))
         dataset_cfg = EasyDict(yaml_config)
-        ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
+        ROOT_DIR = (Path(__file__).resolve().parent / '../../../../').resolve()
         dataset_cfg.VERSION = args.version
         dataset_cfg.MAX_SWEEPS = args.max_sweeps 
         create_lyft_info(

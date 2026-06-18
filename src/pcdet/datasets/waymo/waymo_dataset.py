@@ -788,7 +788,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
+    ROOT_DIR = (Path(__file__).resolve().parent / '../../../../').resolve()
 
     if args.func == 'create_waymo_infos':
         try:
